@@ -9,7 +9,6 @@ from discord.ext import commands
 from discord import Permissions
 from discord import Webhook
 
-
 client = commands.Bot(command_prefix="l$", intents = discord.Intents.all())
 client.remove_command('help')
 ######################################setup########################################
