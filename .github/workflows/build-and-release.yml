@@ -1,0 +1,74 @@
+name: Build and Release APK
+
+on:
+  push:
+    branches: [ main, master ]
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          java-version: '11'
+          distribution: 'temurin'
+          cache: gradle
+
+      - name: Accept Android SDK licenses
+        run: |
+          mkdir -p $ANDROID_HOME/licenses
+          echo "8933bad161af4178b1185d1a37fbf41ea5269c55" > $ANDROID_HOME/licenses/android-sdk-license
+          echo "d56f5187479451eabf01fb78af6dfcb131a6481e" >> $ANDROID_HOME/licenses/android-sdk-license
+          echo "24333f8a63b6825ea9c5514f83c2829b004d1fee" >> $ANDROID_HOME/licenses/android-sdk-license
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+
+      - name: Build with Gradle
+        run: ./gradlew assembleDebug
+
+      - name: Rename APK with Version
+        run: |
+          chmod +x ./scripts/rename_apk.sh
+          ./scripts/rename_apk.sh
+          VERSION_NAME=$(grep -oP 'versionName "\K[^"]+' app/build.gradle)
+          echo "APK_VERSION=$VERSION_NAME" >> $GITHUB_ENV
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v3
+        with:
+          name: game-mod-menu-v${{ env.APK_VERSION }}
+          path: |
+            app/build/outputs/apk/debug/app-debug.apk
+            app/build/outputs/apk/debug/game-mod-menu-v${{ env.APK_VERSION }}.apk
+
+      - name: Generate Changelog
+        id: generate_changelog
+        if: startsWith(github.ref, 'refs/tags/')
+        run: |
+          chmod +x ./scripts/generate_changelog.sh
+          CHANGELOG=$(./scripts/generate_changelog.sh ${{ github.ref_name }})
+          echo "CHANGELOG<<EOF" >> $GITHUB_ENV
+          echo "$CHANGELOG" >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
+
+      - name: Create Release
+        id: create_release
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            app/build/outputs/apk/debug/app-debug.apk
+            app/build/outputs/apk/debug/game-mod-menu-v${{ env.APK_VERSION }}.apk
+          name: Release ${{ github.ref_name }}
+          body: ${{ env.CHANGELOG }}
+          draft: false
+          prerelease: false
+          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}

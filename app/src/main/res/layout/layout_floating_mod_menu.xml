@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardViewMenu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="@color/menuBackground"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="4dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Header with title and control buttons -->
+            <RelativeLayout
+                android:id="@+id/menuHeader"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@color/menuHeaderBackground"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/mod_menu_title"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:layout_centerVertical="true" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/btnMinimize"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@android:drawable/arrow_up_float"
+                        android:contentDescription="@string/minimize"
+                        android:tint="@color/white"
+                        android:layout_marginEnd="8dp" />
+
+                    <ImageView
+                        android:id="@+id/btnClose"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@android:drawable/ic_menu_close_clear_cancel"
+                        android:contentDescription="@string/close"
+                        android:tint="@color/white" />
+                </LinearLayout>
+            </RelativeLayout>
+
+            <!-- Main content with mod options -->
+            <LinearLayout
+                android:id="@+id/menuContent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+                
+                <!-- Game detection status -->
+                <TextView
+                    android:id="@+id/gameTitleText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="No Game Detected"
+                    android:textStyle="italic"
+                    android:textColor="@color/colorAccent"
+                    android:gravity="center"
+                    android:padding="4dp"
+                    android:layout_marginBottom="8dp" />
+
+                <Switch
+                    android:id="@+id/switchSpeedHack"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/speed_hack"
+                    android:padding="8dp"
+                    android:textColor="@color/white" />
+
+                <Switch
+                    android:id="@+id/switchUnlimitedResources"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/unlimited_resources"
+                    android:padding="8dp"
+                    android:textColor="@color/white" />
+
+                <Switch
+                    android:id="@+id/switchGodMode"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/god_mode"
+                    android:padding="8dp"
+                    android:textColor="@color/white" />
+
+                <Switch
+                    android:id="@+id/switchNoCooldown"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/no_cooldown"
+                    android:padding="8dp"
+                    android:textColor="@color/white" />
+                    
+                <!-- Subway Surfers specific mods - initially hidden -->
+                <LinearLayout
+                    android:id="@+id/subwaySurfersControls"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+                    
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/colorAccent"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp" />
+                        
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Subway Surfers Mods"
+                        android:textStyle="bold"
+                        android:textColor="@color/colorAccent"
+                        android:gravity="center"
+                        android:padding="4dp" />
+                    
+                    <Switch
+                        android:id="@+id/switchInfiniteHoverboard"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Infinite Hoverboard"
+                        android:padding="8dp"
+                        android:textColor="@color/white" />
+                        
+                    <Switch
+                        android:id="@+id/switchMaxMultiplier"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Max Score Multiplier"
+                        android:padding="8dp"
+                        android:textColor="@color/white" />
+                        
+                    <Switch
+                        android:id="@+id/switchNoObstacles"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="No Obstacles"
+                        android:padding="8dp"
+                        android:textColor="@color/white" />
+                        
+                    <Switch
+                        android:id="@+id/switchAutoJump"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Auto Jump/Slide"
+                        android:padding="8dp"
+                        android:textColor="@color/white" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</RelativeLayout>

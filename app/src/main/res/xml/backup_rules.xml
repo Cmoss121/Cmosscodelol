@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<full-backup-content>
+    <!-- Backup only important app data -->
+    <include domain="sharedpref" path="user_preferences.xml"/>
+    <exclude domain="sharedpref" path="system_settings.xml"/>
+    <exclude domain="file" path="temp_files/"/>
+</full-backup-content>

@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">Game Mod Menu</string>
+    <string name="app_description">A floating mod menu that provides game enhancements</string>
+    
+    <!-- Main Activity -->
+    <string name="start_mod_menu">Start Mod Menu</string>
+    <string name="stop_mod_menu">Stop Mod Menu</string>
+    <string name="menu_opacity">Menu Opacity</string>
+    <string name="start_on_boot">Start on boot</string>
+    <string name="instructions">Instructions</string>
+    <string name="instructions_text">1. Click the Start button to activate the mod menu\n2. If asked, grant the overlay permission\n3. The mod menu will appear as a floating window\n4. Drag the menu by its header to reposition it\n5. Toggle mods on/off as needed\n6. Minimize the menu when not in use</string>
+    <string name="disclaimer">Disclaimer: This app is for educational purposes only. Using mods in online games may violate terms of service and result in account bans.</string>
+    <string name="overlay_permission_needed">Overlay permission is needed for the mod menu to work</string>
+    <string name="overlay_permission_denied">Overlay permission denied. The mod menu cannot work without this permission.</string>
+    
+    <!-- Floating Menu -->
+    <string name="mod_menu_title">Game Mods</string>
+    <string name="minimize">Minimize</string>
+    <string name="close">Close</string>
+    <string name="speed_hack">Speed Hack</string>
+    <string name="unlimited_resources">Unlimited Resources</string>
+    <string name="god_mode">God Mode</string>
+    <string name="no_cooldown">No Cooldown</string>
+</resources>
